@@ -1,561 +1,1395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scaler Previous Year Question Bank</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #f5f5f5;
-      display: flex;
-    }
-    .sidebar {
-      width: 200px;
-      background: #1f1f1f;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      overflow-y: auto;
-      padding: 15px;
-      box-sizing: border-box;
-    }
-    .sidebar h2 {
-      margin-bottom: 20px;
-      color: #4cafef;
-      font-size: 16px;
-      text-align: center;
-    }
-    .subject-group {
-      margin-bottom: 20px;
-    }
-    .subject-title {
-      color: #ffb347;
-      font-weight: bold;
-      margin-bottom: 10px;
-      padding: 8px;
-      background: #2a2a2a;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .subject-title:hover {
-      background: #333;
-    }
-    .subject-options {
-      display: none;
-      margin-left: 15px;
-    }
-    .subject-options.active {
-      display: block;
-    }
-    .sidebar a {
-      display: block;
-      padding: 8px 12px;
-      margin-bottom: 6px;
-      color: #f5f5f5;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.3s;
-      font-size: 14px;
-    }
-    .sidebar a:hover {
-      background: #333;
-    }
-    .sidebar a.active {
-      background: #4cafef;
-      color: #121212;
-    }
-    .main {
-      margin-left: 220px;
-      padding: 20px;
-      flex-grow: 1;
-    }
-    .main h1 {
-      color: #4cafef;
-    }
-    .breadcrumb {
-      color: #888;
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
-    .search-box {
-      margin-bottom: 20px;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    .question {
-      background: #1f1f1f;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-    }
-    .question h3 {
-      margin: 0 0 10px;
-      color: #ffb347;
-    }
-    .answer {
-      display: none;
-      margin-top: 10px;
-      color: #90ee90;
-      white-space: pre-wrap;
-    }
-    .show-btn {
-      margin-top: 10px;
-      background: #4cafef;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      color: #121212;
-      font-weight: bold;
-    }
-    .content-section {
-      display: none;
-    }
-    .content-section.active {
-      display: block;
-    }
-    .notes-placeholder {
-      background: #1f1f1f;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      color: #888;
-    }
-    .home-section {
-      display: block;
-    }
-    .question.hidden {
-      display: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prepverse - Previous-Year Question Bank</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: #f47b7b;
+min-height: 100vh;
+padding-top: 80px;
+margin: 0;
+overflow-x: hidden;
+position: relative;
+}
+
+.video-background {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+overflow: hidden;
+}
+
+.video-background video {
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+object-fit: cover;
+}
+.video-background::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+}
+.sidebar {
+width: 100%;
+height: 80px;
+position: fixed;
+top: 0;
+left: 0;
+background: rgba(0, 0, 0, 0.7);
+backdrop-filter: blur(15px);
+-webkit-backdrop-filter: blur(15px);
+padding: 0 40px;
+box-shadow: 0 4px 20px rgba(218, 128, 11, 0.5);
+display: flex;
+align-items: center;
+gap: 20px;
+z-index: 100;
+border:4px solid rgba(155, 116, 57, 0.6);
+}
+.sidebar h2 {
+display: none;
+}
+.prepverse-link a {
+    padding: 16px 32px;    
+    background: linear-gradient(135deg, #4cafef, #3b9ed9);
+    border-radius: 10px;
+    font-size: 30px; 
+    font-weight: 700;
+    color: #f4e0e0 !important;
+    text-decoration: none;
+    transition: all 0.3s ease; 
+    box-shadow: 8 4px 55px rgba(111, 177, 220, 0.4); 
+}
+
+.prepverse-link a:hover {
+    transform: translateY(2px); 
+    box-shadow: 0 6px 20px rgba(76, 175, 239, 0.6);
+}
+.subject-group {
+position: relative;
+}
+.subject-title {
+padding: 12px 20px;
+background: rgba(86, 125, 183, 0.6);
+border-radius: 8px;
+cursor: pointer;
+font-size: 15px;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 8px;
+transition: 0.3s;
+white-space: nowrap;
+}
+.subject-title:hover {
+background: rgba(65, 127, 182, 0.847);
+transform: translateY(-2px);
+}
+.subject-title::after {
+content: '';
+font-size: 10px;
+margin-left: 5px;
+transition: 0.3s;
+}
+.subject-group.open .subject-title::after {
+transform: rotate(180deg);
+}
+.subject-options {
+position: absolute;
+top: 100%;
+left: 0;
+background: #1a2332;
+border-radius: 8px;
+box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+min-width: 220px;
+margin-top: 8px;
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: 0.3s;
+padding: 8px 0;
+z-index: 1000;
+}
+.subject-options.active {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+.sidebar a {
+display: block;
+padding: 10px 16px;
+color: #b8c5d6;
+text-decoration: none;
+font-size: 14px;
+transition: 0.3s;
+position: relative;
+}
+.sidebar a::before {
+content: '';
+position: absolute;
+left: 0;
+top: 0;
+height: 100%;
+width: 3px;
+background: #4cafef;
+transform: scaleY(0);
+transition: 0.3s;
+}
+.sidebar a:hover {
+background: rgba(76, 175, 239, 0.15);
+color: #4cafef;
+padding-left: 20px;
+}
+.sidebar a.active {
+background: linear-gradient(90deg, #4cafef, #3b9ed9);
+color: #fff;
+font-weight: 600;
+}
+.main {
+max-width: 1400px;
+margin: 0 auto;
+padding: 40px;
+}
+.main h1 {
+background: linear-gradient(135deg, #4cafef, #6ee7b7);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-size: 36px;
+margin-bottom: 10px;
+font-weight: 700;
+animation: fadeInDown 0.6s;
+}
+@keyframes fadeInDown {
+from {
+opacity: 0;
+transform: translateY(-20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.breadcrumb {
+color: #888;
+margin-bottom: 30px;
+font-size: 14px;
+animation: fadeIn 0.6s 0.2s both;
+}
+@keyframes fadeIn {
+from {
+opacity: 0;
+}
+to {
+opacity: 1;
+}
+}
+.search-box {
+margin-bottom: 30px;
+animation: fadeIn 0.6s 0.3s both;
+}
+input[type="text"] {
+width: 100%;
+max-width: 600px;
+padding: 14px 20px;
+border: 2px solid rgba(76, 175, 239, 0.3);
+border-radius: 12px;
+font-size: 16px;
+background: rgba(31, 31, 31, 0.6);
+color: #f5f5f5;
+transition: 0.3s;
+backdrop-filter: blur(10px);
+}
+input[type="text"]:focus {
+outline: none;
+border-color: #4cafef;
+box-shadow: 0 0 20px rgba(76, 175, 239, 0.3);
+background: rgba(31, 31, 31, 0.8);
+}
+.question {
+background: linear-gradient(135deg, rgba(31, 31, 31, 0.8), rgba(42, 42, 60, 0.6));
+padding: 25px;
+margin-bottom: 20px;
+border-radius: 12px;
+border: 1px solid rgba(76, 175, 239, 0.2);
+transition: 0.3s;
+animation: slideInUp 0.5s both;
+backdrop-filter: blur(10px);
+position: relative;
+}
+@keyframes slideInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.question:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 30px rgba(76, 175, 239, 0.2);
+border-color: rgba(76, 175, 239, 0.4);
+}
+.question h3 {
+margin: 0 0 15px;
+color: #ffb347;
+font-size: 20px;
+font-weight: 600;
+}
+.question p {
+line-height: 1.7;
+margin-bottom: 12px;
+color: #d1d5db;
+}
+.question ul {
+margin: 10px 0 10px 20px;
+line-height: 1.8;
+}
+.answer {
+display: none;
+margin-top: 15px;
+padding: 15px;
+background: rgba(16, 185, 129, 0.1);
+border-left: 3px solid #10b981;
+border-radius: 8px;
+color: #6ee7b7;
+white-space: pre-wrap;
+animation: fadeIn 0.4s;
+}
+
+.code-answer {
+    display: none;
+    margin-top: 15px;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #007acc;
+    font-family: 'Consolas', 'Courier New', monospace;
+    white-space: pre;
+    overflow-x: auto;
+    font-size: 14px;
+    animation: fadeIn 0.4s;
+}
+
+.example-block {
+    margin: 15px 0;
+    padding: 10px 15px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(76, 175, 239, 0.1);
+    color: #fff;
+    font-size: 14px;
+}
+.example-block strong {
+    color: #ffb347;
+    display: block;
+    margin-bottom: 5px;
+}
+.example-content {
+    white-space: pre-wrap;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.show-btn {
+margin-top: 15px;
+background: linear-gradient(135deg, #4cafef, #3b9ed9);
+border: none;
+padding: 10px 20px;
+border-radius: 8px;
+cursor: pointer;
+color: #fff;
+font-weight: 600;
+font-size: 14px;
+transition: 0.3s;
+box-shadow: 0 4px 12px rgba(76, 175, 239, 0.3);
+}
+.show-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(76, 175, 239, 0.4);
+background: linear-gradient(135deg, #3b9ed9, #2a7fb8);
+}
+.content-section {
+display: none;
+}
+.content-section.active {
+display: block;
+}
+.notes-placeholder {
+background: linear-gradient(135deg, rgba(31, 31, 31, 0.8), rgba(42, 42, 60, 0.6));
+padding: 60px 40px;
+border-radius: 12px;
+text-align: center;
+color: #888;
+border: 2px dashed rgba(76, 175, 239, 0.3);
+animation: fadeIn 0.6s;
+}
+.notes-placeholder h3 {
+color: #50adeb;
+margin-bottom: 15px;
+font-size: 24px;
+}
+.prepverse-section p {
+line-height: 1.8;
+margin-bottom: 20px;
+font-size: 16px;
+color: #d1d5db;
+}
+.prepverse-section ul {
+margin: 20px 0 20px 40px;
+line-height: 2;
+}
+.prepverse-section li {
+margin-bottom: 12px;
+color: #d1d5db;
+}
+.prepverse-section strong {
+color: #4cafef;
+font-weight: 600;
+}
+.question.hidden {
+display: none;
+}
+@media (max-width: 768px) {
+.sidebar {
+padding: 0 20px;
+gap: 10px;
+overflow-x: auto;
+min-height: 80px;
+flex-wrap: wrap;
+}
+body {
+padding-top: 100px;
+}
+.main {
+padding: 20px;
+}
+.main h1 {
+font-size: 28px;
+}
+.subject-title {
+font-size: 13px;
+padding: 10px 15px;
+}
+}
+</style>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Navigation</h2>
-    
-    <div class="subject-group">
-      <div class="subject-title" onclick="toggleSubject('discrete-maths')"> Discrete Maths</div>
-      <div class="subject-options" id="discrete-maths-options">
-        <a href="#" onclick="showContent('discrete-maths-questions')"> Previous Year Questions</a>
-        <a href="#" onclick="showContent('discrete-maths-notes')">Notes</a>
-      </div>
-    </div>
-
-    <div class="subject-group">
-      <div class="subject-title" onclick="toggleSubject('icp')"> ICP</div>
-      <div class="subject-options" id="icp-options">
-        <a href="#" onclick="showContent('icp-questions')"> Previous Year Questions</a>
-        <a href="#" onclick="showContent('icp-notes')"> Notes</a>
-      </div>
-    </div>
-
-    <div class="subject-group">
-      <div class="subject-title" onclick="toggleSubject('webdev')"> Web Development</div>
-      <div class="subject-options" id="webdev-options">
-        <a href="#" onclick="showContent('webdev-questions')"> Previous Year Questions</a>
-        <a href="#" onclick="showContent('webdev-notes')"> Notes</a>
-      </div>
-    </div>
-
-    <div style="margin-top: 30px;">
-      <a href="#" onclick="showContent('home')" style="background: #2a2a2a;">Home</a>
-    </div>
-  </div>
-
-  <div class="main">
-    <h1>Scaler Midterm Question Bank</h1>
-    <div class="breadcrumb" id="breadcrumb">Home</div>
-
-    <!-- Home Section -->
-    <div id="home" class="content-section home-section">
-      <p>Welcome! This is a collection of questions from previous batch of 2024 to help 2025 freshers prepare better.</p>
-      <p>Navigate through the subjects in the sidebar to access:</p>
-      <ul>
-        <li><strong>Previous Year Questions:</strong> Curated questions from previous batches</li>
-        <li><strong>Notes:</strong> Study materials and reference notes (Coming Soon)</li>
-      </ul>
-      <p> Furthermore this is an opensoource website so you can contribute to this website yourself as well </p>
-    </div>
-
-    <div class="search-box" id="search-box" style="display: none;">
-      <input type="text" id="search" placeholder="Search for questions..." oninput="searchQuestions()">
-    </div>
-
-<div id="discrete-maths-questions" class="content-section">
-  <div class="question">
-    <h3>Q1: The Startup Logistics Problem</h3>
-    <p>
-      Lina is the operations manager at a fast-growing startup. To streamline operations, she must solve a few problems using functions.
-    </p>
-    <p><b>Challenge 1: Delivery Routes</b></p>
-    <ul>
-      <li>If Lina assigns a driver to a unique route, but some customers are missed, what kind of function is this (Injective, Surjective, or Bijective)?</li>
-      <li>If every customer is covered but some drivers have more than one route, what kind of function is this (Injective, Surjective, or Bijective)?</li>
-    </ul>
-    <p><b>Challenge 2: Pricing Model</b></p>
-    <ul>
-      <li>Service A: f(x) = 5x + 15 and Service B: g(x) = 3x</li>
-      <li>If a client subscribes to both services, what is (f+g)(x)?</li>
-      <li>If Lina applies a discount by multiplying costs, what is (f∗g)(x)?</li>
-    </ul>
-    <p><b>Challenge 3: Efficiency Analysis</b></p>
-    <ul>
-      <li>Delivery time: g(x) = x + 2, Cost: f(x) = x + 5</li>
-      <li>Find (f∘g)(x) and (g∘f)(x).</li>
-    </ul>
-    <p><b>Challenge 4: Reversing a Process</b></p>
-    <ul>
-      <li>Given h(x) = (2x + 4) / 3, find h⁻¹(x).</li>
-    </ul>
-    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-    <div class="answer">Answer:
-1. Not surjective, but injective.
-2. Surjective, not injective.
-3. (f+g)(x) = 8x + 15, (f∗g)(x) = 15x² + 45x
-4. (f∘g)(x) = (x+2)+5 = x+7, (g∘f)(x) = (x+5)+2 = x+7
-5. h⁻¹(x) = (3x - 4) / 2
-    </div>
-  </div>
-
-  <div class="question">
-    <h3>Q2: Rules of Inference Problem</h3>
-    <p>
-      Hypotheses:  
-      1. If it does not rain or if it is not foggy, then the sailing race will be held and the lifesaving demonstration will go on.  
-      2. If the sailing race is held, then the trophy will be awarded.  
-      3. The trophy was not awarded.  
-    </p>
-    <p>Prove: "It rained".</p>
-    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-    <div class="answer">Answer:
-Using rules of inference:  
-- From (2) and (3), sailing race was not held.  
-- From (1), for the race not to be held, "it must have rained".  
-Therefore, conclusion: It rained.
-    </div>
-  </div>
-
-  <div class="question">
-    <h3>Q3: Set Operations</h3>
-    <p>A = {2, 4, 6, 8}, B = {4, 6, 9, 12}, C = {6, 12, 15}</p>
-    <ul>
-      <li>(A∪B)∩C</li>
-      <li>(A−B)∪(B∩C)</li>
-      <li>A−B−C</li>
-      <li>A−(B∩C)</li>
-    </ul>
-    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-    <div class="answer">Answer:
-a. (A∪B)∩C = {6,12}  
-b. (A−B)∪(B∩C) = {2,8,6,12}  
-c. A−B−C = {2,8}  
-d. A−(B∩C) = {2,4,8}
-    </div>
-  </div>
-
-  <div class="question">
-    <h3>Q4: The Digital Vault Challenge</h3>
-    <p>
-      A hacker named Alex designed a vault that requires solving binary and logical challenges.
-    </p>
-    <p><b>Challenge 1:</b> Code A = 10101000, Code B = 11000101. Find A+B in decimal and 8-bit binary.</p>
-    <p><b>Challenge 2:</b> Find the 16-bit two's complement of (-8).</p>
-    <p><b>Challenge 3:</b> P = ((x ∧ y) ∧ (x ∨ y)) ∧ (x ∧ y), where x=15 and y=9. Find P in decimal.</p>
-    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-    <div class="answer">Answer:
-1. A=168, B=197 → A+B=365, Binary=101101101 (needs 9 bits).  
-2. 16-bit two's complement of -8 = 1111111111111000.  
-3. x=15 (1111), y=9 (1001) → x∧y=1001=9.  
-x∨y=1111=15.  
-So P = (9 ∧ 15) ∧ 9 = 9.  
-Decimal = 9.
-    </div>
-  </div>
+<div class="video-background">
+<video autoplay muted loop playsinline>
+<source src="bh.mp4" type="video/mp4">
+</video>
 </div>
 
+<div class="sidebar">
+<div class="prepverse-link">
+<a href="#" onclick="showContent('prepverse')">🚀 Prepverse</a>
+</div>
+<div class="subject-group">
+<div class="subject-title" onclick="toggleSubject('discrete-maths')">Discrete Maths</div>
+<div class="subject-options" id="discrete-maths-options">
+<a href="#" onclick="showContent('discrete-maths-midterm')">Mid Term Questions</a>
+<a href="#" onclick="showContent('discrete-maths-endterm')">End Term Questions</a>
+<a href="#" onclick="showContent('discrete-maths-notes')">Notes</a>
+</div>
+</div>
+<div class="subject-group">
+<div class="subject-title" onclick="toggleSubject('icp')">ICP</div>
+<div class="subject-options" id="icp-options">
+<a href="#" onclick="showContent('icp-midterm')">Mid Term Questions</a>
+<a href="#" onclick="showContent('icp-endterm')">End Term Questions</a>
+<a href="#" onclick="showContent('icp-notes')">Notes</a>
+</div>
+</div>
+<div class="subject-group">
+<div class="subject-title" onclick="toggleSubject('webdev')">Web Development</div>
+<div class="subject-options" id="webdev-options">
+<a href="#" onclick="showContent('webdev-midterm')">Mid Term Questions</a>
+<a href="#" onclick="showContent('webdev-endterm')">End Term Questions</a>
+<a href="#" onclick="showContent('webdev-notes')">Notes</a>
+</div>
+</div>
+</div>
 
-    <!-- Discrete Maths Notes -->
-    <div id="discrete-maths-notes" class="content-section">
-      <div class="notes-placeholder">
-        <h3> Discrete Mathematics Notes</h3>
-        <p>Notes will be available soon. PDF materials will be uploaded here.</p>
-      </div>
-    </div>
+<div class="main">
+<h1>Prep-verse</h1>
+<div class="breadcrumb" id="breadcrumb"></div>
 
-    <!-- ICP Questions -->
-    <div id="icp-questions" class="content-section">
-      <div class="question">
-        <h3>Q1: Compute A^B</h3>
-        <p>You are given two integers A and B. Find the value of A^B.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer:
-A^B can be computed using Math.pow(A, B).
-Example: For A=2, B=3 → 2^3 = 8</div>
-      </div>
+<div id="prepverse" class="content-section prepverse-section active">
+    <h3>A website by Students for students</h3>
+<p>Welcome! This is a collection of questions from previous batch of 2024 to help 2025 freshers prepare better.</p>
+<p>Navigate through the subjects in the sidebar to access:</p>
+<ul>
+<li><strong>Mid Term Questions:</strong> Questions from Semester 1 Mid Term exams</li>
+<li><strong>End Term Questions:</strong> Questions from Semester 1 End Term exams</li>
+<li><strong>Extra Questions:</strong> Study materials (coming soon)</li>
+</ul>
+<p>Furthermore this is an open-source website so you can contribute to this website yourself as well</p>
+</div>
 
-      <div class="question">
-        <h3>Q2: Changing Permissions of a File</h3>
-        <p>Write a shell script to create a directory, a file inside it, and change its permissions 
-so that the owner has read/write permissions, and group/others have read-only.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer:
-mkdir test_directory
-cd test_directory
-touch test_file.txt
-chmod 644 test_file.txt
-ls -l test_file.txt | cut -d ' ' -f 1</div>
-      </div>
+<div class="search-box" id="search-box" style="display:none;">
+<input type="text" id="search" placeholder="🔍 Search for questions..." oninput="searchQuestions()">
+</div>
 
-      <div class="question">
-        <h3>Q3: Relation of N with 18</h3>
-        <p>Given a number N, print whether N is greater than, smaller than, or equal to 18.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer:
-if (N > 18) print "N is Greater than 18"
-else if (N < 18) print "N is smaller than 18"
-else print "N is equal to 18"</div>
-      </div>
+<div id="discrete-maths-midterm" class="content-section">
+<div class="question">
+<h3>Question 1: Logic Gates</h3>
+<p>What is the output of an XOR gate when both inputs are 1?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">0 (False) - XOR gate outputs 1 only when inputs are different.</div>
+</div>
+<div class="question">
+<h3>Question 2: Set Theory</h3>
+<p>If A = {1, 2, 3} and B = {3, 4, 5}, what is A ∩ B?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">{3} - The intersection contains only elements present in both sets.</div>
+</div>
+<div class="question">
+<h3>Question 3: Boolean Algebra</h3>
+<p>Simplify: A + A'B</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">A + B - Using the absorption law: A + A'B = A + B</div>
+</div>
+<div class="question">
+<h3>Question 4: Graph Theory</h3>
+<p>What is the minimum number of edges required to connect n vertices in a graph?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">n - 1 edges (This forms a tree, which is a minimally connected graph)</div>
+</div>
+<div class="question">
+<h3>Question 5: Combinatorics</h3>
+<p>How many ways can you arrange the letters in the word "BOOK"?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">12 ways - 4!/(2!) = 24/2 = 12 (dividing by 2! because 'O' repeats twice)</div>
+</div>
+</div>
 
-      <div class="question">
-        <h3>Q4: Leap Year III</h3>
-        <p>Given an integer A (year), return 1 if it is a leap year, else return 0.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer:
-Leap year if:
-- divisible by 400 OR
-- divisible by 4 AND not divisible by 100
-Example: 2020 → 1, 1999 → 0</div>
-      </div>
+<div id="discrete-maths-endterm" class="content-section">
+  <div class="question">
+    <h3>Question 1: Expression Evaluation (Prefix/Postfix Notation)</h3>
+    <p>Evaluate the following expression:</p>
+    <p><code>-*7 / 24 3 + 9 ↑ 2 3</code></p>
+    <p>Show all steps of your calculation.</p>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">This is a prefix expression. Evaluate from right to left:
+↑ 2 3 = 2³ = 8
++ 9 8 = 17
+/ 24 3 = 8
+* 7 8 = 56
+- 56 17 = 39
 
-      <div class="question">
-        <h3>Q5: Is It Perfect?</h3>
-        <p>Check if a number N is a perfect number.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer:
-Perfect number = sum of its proper divisors.
-Example: 6 → divisors (1,2,3), sum=6 → YES
-4 → divisors (1,2), sum=3 → NO</div>
-      </div>
+Final Answer: 39</div>
+  </div>
 
-      <div class="question">
-        <h3>Q6: Inverted Numeric Pyramid</h3>
-        <p>Take integer N as input, print the numeric inverted half pyramid pattern.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer:
-Example: N=3
-1 2 3
-1 2
-1</div>
-      </div>
-    </div>
+  <div class="question">
+    <h3>Question 2: Mathematical Induction</h3>
+    <p>Prove by mathematical induction that for all n ∈ ℕ:</p>
+    <p><strong>P(n) = 1/(1·3) + 1/(3·5) + ... + 1/((2n-1)(2n+1)) = n/(2n+1)</strong></p>
+    <p><strong>Your proof should include:</strong></p>
+    <ul>
+      <li>Base case</li>
+      <li>Inductive hypothesis</li>
+      <li>Inductive step</li>
+    </ul>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">Base Case (n=1): 
+LHS = 1/(1·3) = 1/3
+RHS = 1/(2·1+1) = 1/3 ✓
 
-    <!-- ICP Notes -->
-    <div id="icp-notes" class="content-section">
-      <div class="notes-placeholder">
-        <h3> ICP (Introduction to Computer Programming) Notes</h3>
-        <p>Notes will be available soon. PDF materials will be uploaded here.</p>
-      </div>
-    </div>
+Inductive Hypothesis: Assume true for n=k
+P(k) = k/(2k+1)
 
-    <!-- Web Development Questions -->
-    <div id="webdev-questions" class="content-section">
-      <div class="question">
-        <h3>Q1: Build a simple webpage with a navigation bar</h3>
-        <p><b>Description:</b> Create a simple webpage with a navigation bar using the &lt;nav&gt; tag that contains three links inside anchor tags: "Home", "About", and "Contact". The links should be aligned horizontally and when hovered over they should change color to green.</p>
-        <p><b>Test cases:</b> Should have links present and color changes upon hover.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer: Use &lt;nav&gt; with &lt;a&gt; tags styled using CSS flex or inline-block. Apply hover state to change color.</div>
-      </div>
+Inductive Step: Prove for n=k+1
+P(k+1) = P(k) + 1/((2(k+1)-1)(2(k+1)+1))
+      = k/(2k+1) + 1/((2k+1)(2k+3))
+      = [k(2k+3) + 1]/[(2k+1)(2k+3)]
+      = [2k²+3k+1]/[(2k+1)(2k+3)]
+      = [(2k+1)(k+1)]/[(2k+1)(2k+3)]
+      = (k+1)/(2k+3)
+      = (k+1)/(2(k+1)+1) ✓
 
-      <div class="question">
-        <h3>Q2: Style a Button with Rounded Corners</h3>
-        <p><b>Description:</b> Create a button with the label "Submit" that has rounded corners, a blue background, and white text. When hovered, the background should change to dark blue.</p>
-        <p><b>Test cases:</b> Should have button with rounded corners and color changes on hover.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer: Use CSS properties like border-radius, background-color, and hover selector for styling.</div>
-      </div>
+Therefore, P(n) is true for all n ∈ ℕ.</div>
+  </div>
 
-      <div class="question">
-        <h3>Q3: Create a Responsive Two-Column Layout</h3>
-        <p><b>Description:</b> Create a responsive webpage with two columns: the left column should have a width of 30% and the right column 70%. On screens smaller than 600px, the two columns should stack vertically.</p>
-        <p><b>Test cases:</b> Should display two columns on large screens and stack them on a small screen.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer: Use CSS Flexbox or Grid with media queries for responsiveness.</div>
-      </div>
+  <div class="question">
+    <h3>Question 3: Minimum Spanning Tree (Prim's Algorithm)</h3>
+    <p>Given the weighted graph below with vertices A, B, C, D, E, F, G, H, I:</p>
+    <pre>
+        7      5      2      1
+    A ---- B ---- C ---- E ---- D
+    |      |      |      |      |
+   11      5      3      5      7
+    |      |      |      |      |
+    I ---- G ---- F ------------+
+        6      10     12       H
+    </pre>
+    <p>Starting from vertex A, choose edges in ascending order of their weights without forming a circuit.</p>
+    <p><strong>Find:</strong> The sum of weights of the spanning tree formed using Prim's algorithm.</p>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">Starting from A, select edges in order:
+1. A-B (7)
+2. B-C (5) or B-G (5) - choose B-C
+3. C-E (2)
+4. E-D (1)
+5. C-F (3)
+6. B-G (5)
+7. D-H (7)
+8. G-I (6)
 
-      <div class="question">
-        <h3>Q4: Implement a Basic Box Model Structure</h3>
-        <p><b>Description:</b> Create a box with a width of 300px, height of 150px, a blue border of 5px, 20px of padding, and 10px of margin. The background of the box should be yellow.</p>
-        <p><b>Test cases:</b> Should have a box with the correct dimensions, padding, margin, and border.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer: Apply width, height, margin, padding, border, and background-color styles in CSS.</div>
-      </div>
+Total weight = 7+5+2+1+3+5+7+6 = 36
 
-      <div class="question">
-        <h3>Q5: Create a Flexbox-Based Pricing Table</h3>
-        <p><b>Description:</b> Design a pricing table with three columns for different plans: Basic, Standard, and Premium. Each column should have a header, a list of features, and a "Buy Now" button. The columns should be centered on the page and have equal width.</p>
-        <p><b>Test cases:</b> Should have a container with centered columns and equal width.</p>
-        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
-        <div class="answer">Answer: Use Flexbox with justify-content: center; and flex: 1; for equal column widths.</div>
-      </div>
-    </div>
+Note: The exact edges may vary depending on tie-breaking, but total weight remains the same.</div>
+  </div>
 
-    <!-- Web Development Notes -->
-    <div id="webdev-notes" class="content-section">
-      <div class="notes-placeholder">
-        <h3> Web Development Notes</h3>
-        <p>Notes will be available soon. PDF materials will be uploaded here.</p>
-      </div>
-    </div>
-  </div>
+  <div class="question">
+    <h3>Question 4: Set Theory and Venn Diagrams</h3>
+    <p>In a survey of 100 students, the following data was collected about their interest in three sports:</p>
+    <ul>
+      <li>S = Students interested in Soccer</li>
+      <li>B = Students interested in Basketball</li>
+      <li>V = Students interested in Volleyball</li>
+    </ul>
+    <p><strong>Given:</strong></p>
+    <ul>
+      <li>|S ∩ B| = 20</li>
+      <li>|B ∩ V| = 15</li>
+      <li>|S ∩ V| = 10</li>
+      <li>|S ∩ B ∩ V| = 5</li>
+      <li>|U| = 100 (total students)</li>
+    </ul>
+    <p><strong>Find:</strong></p>
+    <p>a) Number of students interested in exactly soccer and basketball</p>
+    <p>b) Number of students interested in exactly basketball and volleyball</p>
+    <p>c) Number of students interested in exactly soccer and volleyball</p>
+    <p>d) Total number of students interested in exactly two sports</p>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">a) Exactly S and B = |S ∩ B| - |S ∩ B ∩ V| = 20 - 5 = 15
 
-  <script>
-    // Toggle subject dropdown menus
-    function toggleSubject(subjectId) {
-      const options = document.getElementById(subjectId + '-options');
-      
-      // Close all other dropdowns first
-      const allOptions = document.querySelectorAll('.subject-options');
-      allOptions.forEach(opt => {
-        if (opt.id !== subjectId + '-options') {
-          opt.classList.remove('active');
-        }
-      });
-      
-      // Toggle the clicked dropdown
-      options.classList.toggle('active');
-    }
+b) Exactly B and V = |B ∩ V| - |S ∩ B ∩ V| = 15 - 5 = 10
 
-    // Show content sections and update breadcrumb
-    function showContent(contentId) {
-      // Hide all content sections
-      const allSections = document.querySelectorAll('.content-section');
-      allSections.forEach(section => {
-        section.classList.remove('active');
-      });
-      
-      // Show selected section
-      const selectedSection = document.getElementById(contentId);
-      if (selectedSection) {
-        selectedSection.classList.add('active');
-      }
-      
-      // Update breadcrumb
-      updateBreadcrumb(contentId);
-      
-      // Show/hide search box
-      const searchBox = document.getElementById('search-box');
-      if (contentId.includes('questions')) {
-        searchBox.style.display = 'block';
-      } else {
-        searchBox.style.display = 'none';
-      }
-      
-      // Update active link styling
-      updateActiveLink(contentId);
-      
-      // Clear search when switching sections
-      const searchInput = document.getElementById('search');
-      if (searchInput) {
-        searchInput.value = '';
-        searchQuestions(); // Reset search results
-      }
-    }
+c) Exactly S and V = |S ∩ V| - |S ∩ B ∩ V| = 10 - 5 = 5
 
-    // Update breadcrumb navigation
-    function updateBreadcrumb(contentId) {
-      const breadcrumb = document.getElementById('breadcrumb');
-      let breadcrumbText = 'Home';
-      
-      switch(contentId) {
-        case 'discrete-maths-questions':
-          breadcrumbText = 'Home > Discrete Maths > Previous Year Questions';
-          break;
-        case 'discrete-maths-notes':
-          breadcrumbText = 'Home > Discrete Maths > Notes';
-          break;
-        case 'icp-questions':
-          breadcrumbText = 'Home > ICP > Previous Year Questions';
-          break;
-        case 'icp-notes':
-          breadcrumbText = 'Home > ICP > Notes';
-          break;
-        case 'webdev-questions':
-          breadcrumbText = 'Home > Web Development > Previous Year Questions';
-          break;
-        case 'webdev-notes':
-          breadcrumbText = 'Home > Web Development > Notes';
-          break;
-      }
-      
-      breadcrumb.textContent = breadcrumbText;
-    }
+d) Total exactly two sports = 15 + 10 + 5 = 30
 
-    // Update active link styling
-    function updateActiveLink(contentId) {
-      // Remove active class from all links
-      const allLinks = document.querySelectorAll('.sidebar a');
-      allLinks.forEach(link => {
-        link.classList.remove('active');
-      });
-      
-      // Add active class to current link
-      const activeLink = document.querySelector(`[onclick="showContent('${contentId}')"]`);
-      if (activeLink) {
-        activeLink.classList.add('active');
-      }
-    }
+General equation: 
+For exactly two sports = (|A ∩ B| - |A ∩ B ∩ C|) + (|B ∩ C| - |A ∩ B ∩ C|) + (|A ∩ C| - |A ∩ B ∩ C|)</div>
+  </div>
 
-    // Toggle answer visibility
-    function toggleAnswer(button) {
-      const answer = button.nextElementSibling;
-      if (answer.style.display === 'none' || answer.style.display === '') {
-        answer.style.display = 'block';
-        button.textContent = 'Hide Answer';
-        button.style.background = '#ff6b6b';
-      } else {
-        answer.style.display = 'none';
-        button.textContent = 'Show Answer';
-        button.style.background = '#4cafef';
-      }
-    }
+  <div class="question">
+    <h3>Question 5: Minimum Spanning Tree (Kruskal's Algorithm)</h3>
+    <p>Apply Kruskal's algorithm to find the minimum spanning tree for the given graph.</p>
+    <p><strong>Instructions:</strong></p>
+    <ol>
+      <li>List all edges in ascending order of their weights</li>
+      <li>Select n-1 edges (where n is the number of vertices)</li>
+      <li>Skip any edges that would form a circuit</li>
+    </ol>
+    <p><strong>Find:</strong> The total weight of the minimum spanning tree.</p>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">Using the same graph from Question 3:
 
-    // Search functionality
-    function searchQuestions() {
-      const searchTerm = document.getElementById('search').value.toLowerCase();
-      const activeSection = document.querySelector('.content-section.active');
-      
-      if (!activeSection) return;
-      
-      const questions = activeSection.querySelectorAll('.question');
-      
-      questions.forEach(question => {
-        const questionText = question.textContent.toLowerCase();
-        
-        if (searchTerm === '' || questionText.includes(searchTerm)) {
-          question.classList.remove('hidden');
-        } else {
-          question.classList.add('hidden');
-        }
-      });
-    }
+Edges in ascending order:
+1. E-D (1) ✓
+2. C-E (2) ✓
+3. C-F (3) ✓
+4. B-C (5) ✓
+5. B-G (5) ✓
+6. G-I (6) ✓
+7. A-B (7) ✓
+8. D-H (7) ✓
+(Skip remaining edges as they form circuits)
 
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-      // Show home by default
-      showContent('home');
-    });
-  </script>
+Total weight = 1+2+3+5+5+6+7+7 = 36</div>
+  </div>
+
+  <div class="question">
+    <h3>Question 6: Recurrence Relations</h3>
+    <p>Given the recurrence relation:</p>
+    <p><strong>aₙ = 8aₙ₋₂ - 7aₙ₋₁</strong></p>
+    <p>with initial conditions: a₀ = 1, a₁ = 6</p>
+    <p><strong>Tasks:</strong></p>
+    <ul>
+      <li>a) Find the characteristic equation</li>
+      <li>b) Solve for the roots</li>
+      <li>c) Write the general solution in the form: aₙ = α·r₁ⁿ + β·r₂ⁿ</li>
+      <li>d) Use initial conditions to find the values of α and β</li>
+      <li>e) Write the final general solution for aₙ</li>
+    </ul>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">a) Rearrange: aₙ + 7aₙ₋₁ - 8aₙ₋₂ = 0
+    Characteristic equation: r² + 7r - 8 = 0
+
+b) Factoring: (r+8)(r-1) = 0
+    Roots: r₁ = -8, r₂ = 1
+
+c) General solution: aₙ = α(-8)ⁿ + β(1)ⁿ = α(-8)ⁿ + β
+
+d) Using initial conditions:
+    a₀ = 1: α + β = 1
+    a₁ = 6: -8α + β = 6
+    
+    Solving: -9α = 5, so α = -5/9
+    β = 1 + 5/9 = 14/9
+
+e) Final solution: aₙ = (-5/9)(-8)ⁿ + 14/9</div>
+  </div>
+
+  <div class="question">
+    <h3>Question 7: Recursive Functions</h3>
+    <p>A colony of bunnies follows this pattern:</p>
+    <ul>
+      <li>Initially at month 0, there are f(0) = 12 bunnies</li>
+      <li>Every month, there are twice the number of bunnies from the previous month, minus one that dies</li>
+    </ul>
+    <p>The recursive function is: <strong>f(n) = 2f(n-1) - 1</strong></p>
+    <p><strong>Find:</strong> f(5) (the number of bunnies after 5 months)</p>
+    <p>Show all intermediate steps: f(1), f(2), f(3), f(4), and f(5).</p>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">f(0) = 12
+f(1) = 2(12) - 1 = 24 - 1 = 23
+f(2) = 2(23) - 1 = 46 - 1 = 45
+f(3) = 2(45) - 1 = 90 - 1 = 89
+f(4) = 2(89) - 1 = 178 - 1 = 177
+f(5) = 2(177) - 1 = 354 - 1 = 353
+
+Answer: f(5) = 353 bunnies</div>
+  </div>
+
+  <div class="question">
+    <h3>Question 8: Graph Theory - Shortest Paths</h3>
+    <p>Consider the weighted directed graph provided.</p>
+    <p><strong>Part a:</strong> Identify vertices O and T. Find the path O → A → D → T with minimum weight sum</p>
+    <p><strong>Part b:</strong> Identify vertices C and F. Find the path C → B → D → T → F with minimum weight sum</p>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">Note: Without the actual graph visualization, the specific answer depends on the edge weights provided in your exam.
+
+General approach:
+Part a: Add weights of edges: O→A + A→D + D→T
+Part b: Add weights of edges: C→B + B→D + D→T + T→F
+
+Method: For each path, sum the individual edge weights to get total path weight.</div>
+  </div>
+
+  <div class="question">
+    <h3>Question 9: Expression Trees</h3>
+    <p><strong>Part a:</strong> Given the expression: <code>/, *, 5, ↑, 3, 2, -, 7, 9, +, 4</code></p>
+    <p>Write the expression in:</p>
+    <ol>
+      <li>Infix notation</li>
+      <li>Postfix notation</li>
+    </ol>
+    <p><strong>Part b:</strong> Given the expression: <code>*, -, +, -, 6, ↑, 4, 2, /, 12, 3, -, 8, 5</code></p>
+    <p>Write the expression in:</p>
+    <ol>
+      <li>Infix notation</li>
+      <li>Postfix notation</li>
+    </ol>
+    <p>Draw the expression trees for both parts.</p>
+    <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">Part a:
+Prefix: /, *, 5, ↑, 3, 2, -, 7, 9, +, 4
+
+Infix: ((5 * (3 ↑ 2)) / ((7 - 9) + 4))
+      = (5 * 9) / (-2 + 4)
+      = 45 / 2 = 22.5
+
+Postfix: 5 3 2 ↑ * 7 9 - 4 + /
+
+Part b:
+Prefix: *, -, +, -, 6, ↑, 4, 2, /, 12, 3, -, 8, 5
+
+Infix: (((6 - (4 ↑ 2)) + (12 / 3)) - (8 - 5))
+      = ((6 - 16) + 4) - 3
+      = (-10 + 4) - 3
+      = -6 - 3 = -9
+
+Postfix: 6 4 2 ↑ - 12 3 / + 8 5 - - *
+
+Expression Tree structure:
+For Part a: / is root, with * and + as children
+For Part b: * is root, with - and - as children</div>
+  </div>
+</div>
+
+<div id="discrete-maths-notes" class="content-section">
+<div class="notes-placeholder">
+<h3>📚 Discrete Mathematics Notes</h3>
+<p>Notes will be available soon. PDF materials will be uploaded here.</p>
+</div>
+</div>
+
+<div id="icp-midterm" class="content-section">
+<div class="question">
+<h3>Question 1: Programming Basics</h3>
+<p>What is the difference between a compiler and an interpreter?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">A compiler translates the entire program at once into machine code before execution, while an interpreter translates and executes the program line by line.</div>
+</div>
+<div class="question">
+<h3>Question 2: Data Types</h3>
+<p>What is the size of an int in C++ on a 32-bit system?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">4 bytes (32 bits) - typically ranges from -2,147,483,648 to 2,147,483,647</div>
+</div>
+<div class="question">
+<h3>Question 3: Loops</h3>
+<p>What will be the output of the following code?
+<code>
+for(int i = 0; i < 3; i++) {
+cout << i << " ";
+}
+</code></p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">0 1 2 - The loop runs from 0 to 2 (less than 3)</div>
+</div>
+<div class="question">
+<h3>Question 4: Arrays</h3>
+<p>What is the index of the first element in an array?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">0 - Arrays in most programming languages are zero-indexed</div>
+</div>
+<div class="question">
+<h3>Question 5: Functions</h3>
+<p>What is the difference between pass by value and pass by reference?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">Pass by value creates a copy of the variable, while pass by reference passes the memory address, allowing the function to modify the original variable.</div>
+</div>
+</div>
+
+<div id="icp-endterm" class="content-section">
+    <div class="question">
+        <h3>Question 1: Concentric Rectangular Pattern</h3>
+        <p>Print a square 2D matrix of size $(2A-1) \times (2A-1)$ containing concentric rectangular patterns, where the outermost layer is filled with the number $A$, the next layer with $A-1$, and so on, down to $1$ in the center.</p>
+        <div class="example-block">
+            <strong>Example Input:</strong>
+            <div class="example-content">A = 4</div>
+            <strong>Example Output:</strong>
+            <div class="example-content">
+4 4 4 4 4 4 4
+4 3 3 3 3 3 4
+4 3 2 2 2 3 4
+4 3 2 1 2 3 4
+4 3 2 2 2 3 4
+4 3 3 3 3 3 4
+4 4 4 4 4 4 4
+            </div>
+        </div>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+<pre><code>
+public int[][] prettyPrint(int A) {
+    int n = 2 * A - 1;
+    int[][] ans = new int[n][n];
+    int top = 0, bottom = n - 1;
+    int left = 0, right = n - 1;
+    
+    int fillValue = A; 
+    
+    while (top <= bottom && left <= right) {
+        // 1. Top row (left to right)
+        for (int i = left; i <= right; i++) {
+            ans[top][i] = fillValue;
+        }
+        top++;
+
+        // 2. Right column (top to bottom)
+        for (int i = top; i <= bottom; i++) {
+            ans[i][right] = fillValue;
+        }
+        right--;
+
+        // 3. Bottom row (right to left)
+        if (top <= bottom) { 
+            for (int i = right; i >= left; i--) {
+                ans[bottom][i] = fillValue;
+            }
+            bottom--;
+        }
+
+        // 4. Left column (bottom to top)
+        if (left <= right) { 
+            for (int i = bottom; i >= top; i--) {
+                ans[i][left] = fillValue;
+            }
+            left++;
+        }
+        
+        fillValue--; 
+    }
+    return ans;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <div class="question">
+        <h3>Question 2: Sum of Diagonals</h3>
+        <p>Given an $N \times N$ 2D array $\mathbf{A}$, return an array containing the sum of elements for each of the $2N-1$ diagonals. The diagonals are sets of elements where $i+j$ is constant.</p>
+        <div class="example-block">
+            <strong>Example Input 1:</strong>
+            <div class="example-content">A = [[70, 60, 11], [60, 19, 28], [71, 10, 79]]</div>
+            <strong>Example Output 1:</strong>
+            <div class="example-content">70, 120, 101, 38, 79</div>
+        </div>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+<pre><code>
+public int[] solve(int[][] A) {
+    int N = A.length;
+    int[] ans = new int[2 * N - 1]; 
+    
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            int diagonalIndex = i + j; 
+            ans[diagonalIndex] += A[i][j];
+        }
+    }
+    return ans;
+}
+</code></pre>
+        </div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 3: Max Product Pair</h3>
+        <p>Given an array $\mathbf{A}$ of size $N$, return the maximum possible product from any pair $(\mathbf{A}[i], \mathbf{A}[j])$ where $i \neq j$.</p>
+        <div class="example-block">
+            <strong>Example Input 1:</strong>
+            <div class="example-content">A = [7, 8, 2, 1, 3, 4, 5, 9]</div>
+            <strong>Example Output 1:</strong>
+            <div class="example-content">72 (Product of 8 and 9)</div>
+            <strong>Example Input 2:</strong>
+            <div class="example-content">A = [2, 1, 7, 4, 5, -6, 3, -1, -8]</div>
+            <strong>Example Output 2:</strong>
+            <div class="example-content">48 (Product of -6 and -8)</div>
+        </div>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+<pre><code>
+public int solve(int[] A) {
+    int max1 = Integer.MIN_VALUE;
+    int max2 = Integer.MIN_VALUE;
+    int min1 = Integer.MAX_VALUE;
+    int min2 = Integer.MAX_VALUE;
+    
+    for (int num : A) {
+        // Update max1 and max2 (Largest two numbers)
+        if (num > max1) {
+            max2 = max1;
+            max1 = num;
+        } else if (num > max2) {
+            max2 = num;
+        }
+        
+        // Update min1 and min2 (Smallest two numbers - most negative)
+        if (num < min1) {
+            min2 = min1;
+            min1 = num;
+        } else if (num < min2) {
+            min2 = num;
+        }
+    }
+    
+    // The maximum product is either the product of the two largest positives 
+    // or the product of the two smallest negatives 
+    return Math.max(max1 * max2, min1 * min2);
+}
+</code></pre>
+        </div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 4: Extract Prime Numbers</h3>
+        <p>Given a Dynamic Array $\mathbf{A}$ of integers, return a new Dynamic Array containing only the prime numbers from $\mathbf{A}$.</p>
+        <div class="example-block">
+            <strong>Example Input 1:</strong>
+            <div class="example-content">A = [12, 23, 14, 19, 7, 2, 21, 20, 28, 11]</div>
+            <strong>Example Output 1:</strong>
+            <div class="example-content">23, 19, 7, 2, 11</div>
+        </div>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+<pre><code>
+import java.util.ArrayList;
+import java.lang.Math;
+
+public class Solution {
+
+    // Helper function to check for primality
+    private boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        // Only check up to the square root of the number
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public ArrayList<Integer> solve(ArrayList<Integer> A) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        for (int num : A) {
+            if (isPrime(num)) {
+                ans.add(num);
+            }
+        }
+        
+        return ans;
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <div class="question">
+        <h3>Question 5: Check for Pangram</h3>
+        <p>Given a sentence represented as an array of strings $\mathbf{A}$, check if the combined sentence is a **pangram**. A pangram is a unique sentence in which every letter of the lowercase alphabet is used at least once. Return $1$ if it is a pangram, $0$ otherwise.</p>
+        <div class="example-block">
+            <strong>Example Input 1:</strong>
+            <div class="example-content">A = ["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]</div>
+            <strong>Example Output 1:</strong>
+            <div class="example-content">1</div>
+            <strong>Example Input 2:</strong>
+            <div class="example-content">A = ["bit", "scale"]</div>
+            <strong>Example Output 2:</strong>
+            <div class="example-content">0</div>
+        </div>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+<pre><code>
+public int solve(String[] A) {
+    boolean[] alphabetPresent = new boolean[26];
+    
+    // 1. Concatenate and process all strings
+    for (String s : A) {
+        // Convert the string to lowercase to handle case-insensitivity
+        String lowerCaseS = s.toLowerCase(); 
+        
+        for (char ch : lowerCaseS.toCharArray()) {
+            if (ch >= 'a' && ch <= 'z') {
+                // Mark the letter's index as present (e.g., 'a' is index 0)
+                alphabetPresent[ch - 'a'] = true;
+            }
+        }
+    }
+    
+    // 2. Check if all 26 letters were present
+    for (boolean present : alphabetPresent) {
+        if (present == false) {
+            return 0; // Found a missing letter
+        }
+    }
+    
+    return 1; // All letters are present
+}
+</code></pre>
+        </div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 6: Check for Identity Matrix</h3>
+        <p>Given an $N \times N$ square integer matrix $\mathbf{A}$, determine if it is an **identity matrix** (main diagonal elements are $1$ and all other elements are $0$). Return $1$ if it is an identity matrix, $0$ otherwise.</p>
+        <div class="example-block">
+            <strong>Example Input 1:</strong>
+            <div class="example-content">A = [[1, 0], [0, 1]]</div>
+            <strong>Example Output 1:</strong>
+            <div class="example-content">1</div>
+            <strong>Example Input 2:</strong>
+            <div class="example-content">A = [[0, 0, 1], [0, 1, 0], [1, 0, 0]]</div>
+            <strong>Example Output 2:</strong>
+            <div class="example-content">0</div>
+        </div>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+<pre><code>
+public int solve(int[][] A) {
+    int N = A.length;
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (i == j) {
+                // Main Diagonal check: Must be 1
+                if (A[i][j] != 1) {
+                    return 0; 
+                }
+            } else {
+                // Non-Diagonal check: Must be 0
+                if (A[i][j] != 0) {
+                    return 0; 
+                }
+            }
+        }
+    }
+    // If the loops complete, all conditions were met
+    return 1;
+}
+</code></pre>
+        </div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 7: Extract Lowercase Letters</h3>
+        <p>Given a string $\mathbf{A}$ (containing upper/lowercase English letters), return a new string consisting of **only the lowercase letters** from $\mathbf{A}$ in the same order.</p>
+        <div class="example-block">
+            <strong>Example Input 1:</strong>
+            <div class="example-content">A = "IGNOREscalerIGNORE"</div>
+            <strong>Example Output 1:</strong>
+            <div class="example-content">scaler</div>
+            <strong>Example Input 2:</strong>
+            <div class="example-content">A = "AZBPb"</div>
+            <strong>Example Output 2:</strong>
+            <div class="example-content">bb</div>
+        </div>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+<pre><code>
+import java.lang.StringBuilder;
+
+public class Solution {
+    public String extractLowercase(String A) {
+        StringBuilder sb = new StringBuilder();
+        
+        for (int i = 0; i < A.length(); i++) {
+            char ch = A.charAt(i);
+            // Check if the character is in the range of lowercase letters
+            if (ch >= 'a' && ch <= 'z') {
+                sb.append(ch);
+            }
+        }
+        
+        return sb.toString();
+    }
+}
+</code></pre>
+        </div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 8: Search Exact Word Case-Insensitive</h3>
+        <p>Write a **Linux command** to search and display all the lines that contain the **exact word "good"** (Case - insensitive) in a file named <code>input</code>. </p>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+<pre><code>
+grep -i -w "good" input
+# Explanation:
+# -i : Ignore case distinctions (Case-insensitive).
+# -w : Select only those lines containing matches that form whole words.
+</code></pre>
+        </div>
+    </div>
+</div>
+
+<div id="icp-notes" class="content-section">
+<div class="notes-placeholder">
+<h3>📚 ICP (Introduction to Computer Programming) Notes</h3>
+<p>Notes will be available soon. PDF materials will be uploaded here.</p>
+</div>
+</div>
+
+<div id="webdev-midterm" class="content-section">
+<div class="question">
+<h3>Question 1: HTML Basics</h3>
+<p>What does HTML stand for?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">HyperText Markup Language - It's the standard markup language for creating web pages.</div>
+</div>
+<div class="question">
+<h3>Question 2: CSS</h3>
+<p>What is the difference between class and id selectors in CSS?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">Class selectors (.) can be applied to multiple elements, while id selectors (#) should be unique to a single element. IDs have higher specificity than classes.</div>
+</div>
+<div class="question">
+<h3>Question 3: JavaScript</h3>
+<p>What is the difference between let, const, and var?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">var has function scope, let and const have block scope. const cannot be reassigned after declaration, while let and var can be.</div>
+</div>
+<div class="question">
+<h3>Question 4: Box Model</h3>
+<p>What are the four components of the CSS box model?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">Content, Padding, Border, and Margin (from inside to outside)</div>
+</div>
+<div class="question">
+<h3>Question 5: Flexbox</h3>
+<p>What does "justify-content: space-between" do in flexbox?</p>
+<button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+<div class="answer">It distributes flex items evenly with the first item at the start and the last item at the end, with equal space between items.</div>
+</div>
+</div>
+
+<div id="webdev-endterm" class="content-section">
+    <div class="question">
+        <h3>Question 1: Hoisting Fix in Nested Function (JS1)</h3>
+        <p>Fix the hoisting issue in the function <code>counter</code> where a nested <code>var count</code> declaration shadows and causes incorrect incrementing of the outer <code>count</code>. The goal is to properly scope and update the outer count.</p>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+            <pre><code>
+function counter() {
+  let count = 0; 
+  
+  function increment() {
+    if (count === undefined) { 
+      count = 1; 
+    } else {
+      count++;
+    }
+    return count;
+  }
+  
+  return increment;
+}
+
+function counter_fixed() {
+  let count = 0; 
+  
+  function increment_fixed() {
+    count++; 
+    return count;
+  }
+  
+  return increment_fixed;
+}
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="question">
+        <h3>Question 2: Finding Top Performer using Array.reduce (JS2)</h3>
+        <p>Given an array of student objects (with <code>name</code> and <code>marks</code>), find the student with the highest marks and return their name. **Must use the <code>reduce</code> method.**</p>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+            <pre><code>
+function findTopPerformer(students) {
+  const topStudent = students.reduce((max, current) => {
+    if (current.marks > max.marks) {
+      return current;
+    } else {
+      return max;
+    }
+  }, students[0]); 
+  
+  return topStudent.name;
+}
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="question">
+        <h3>Question 3: Count Even Numbers Greater Than Threshold (JS3)</h3>
+        <p>Implement a function <code>countEvenNumbersGreaterThan(arr, threshold)</code> that counts how many **even numbers** in the array are **greater than the given threshold**.</p>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+            <pre><code>
+function countEvenNumbersGreaterThan(arr, threshold) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+    if (num % 2 === 0 && num > threshold) {
+      count++;
+    }
+  }
+  return count;
+}
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="question">
+        <h3>Question 4: Create Object from Two Arrays (JS4)</h3>
+        <p>Given two arrays of equal length (one for keys, one for values), create and return a JavaScript object where elements of the first array are **keys** and elements of the second array are **values**.</p>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+            <pre><code>
+function createObject(keys, values) {
+  const object = {};
+  
+  for (let i = 0; i < keys.length; i++) {
+    object[keys[i]] = values[i];
+  }
+  
+  return object;
+}
+            </code></pre>
+        </div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 5: Find First Pair with Target Sum (JS5)</h3>
+        <p>Implement <code>findPairWithSum(arr, target)</code> using **nested loops** to find and return the **first pair** of integers that sum up to the <code>target</code>. Return an empty array if no pair is found.</p>
+        <button class="show-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="code-answer">
+            <pre><code>
+function findPairWithSum(arr, target) {
+  let ans = []; 
+  
+  for (let i = 0; i < arr.length; i++) {
+    let num1 = arr[i];
+    
+    for (let j = i + 1; j < arr.length; j++) { 
+      let num2 = arr[j];
+      
+      if (num1 + num2 === target) {
+        ans[0] = num1;
+        ans[1] = num2;
+        return ans; 
+      }
+    }
+  }
+  
+  return ans;
+}
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<div id="webdev-notes" class="content-section">
+<div class="notes-placeholder">
+<h3>📚 Web Development Notes</h3>
+<p>Notes will be available soon. PDF materials will be uploaded here.</p>
+</div>
+</div>
+
+</div>
+
+<script>
+function toggleSubject(subjectId) {
+const group = event.target.closest('.subject-group');
+const options = document.getElementById(subjectId + '-options');
+
+document.querySelectorAll('.subject-group').forEach(gr => {
+if (gr !== group) {
+gr.classList.remove('open');
+gr.querySelector('.subject-options').classList.remove('active');
+}
+});
+
+group.classList.toggle('open');
+options.classList.toggle('active');
+}
+
+function showContent(id) {
+document.querySelectorAll('.content-section').forEach(section => {
+section.classList.remove('active');
+});
+
+document.getElementById(id).classList.add('active');
+
+updateBreadcrumb(id);
+
+const searchBox = document.getElementById('search-box');
+searchBox.style.display = id.includes('midterm') || id.includes('endterm') ? 'block' : 'none';
+
+updateActiveLink(id);
+
+const searchInput = document.getElementById('search');
+if (searchInput) {
+searchInput.value = '';
+searchQuestions();
+}
+}
+
+function updateBreadcrumb(id) {
+let text = 'Prepverse';
+if (id === 'discrete-maths-midterm') {
+text = 'Prepverse > Discrete Maths > Mid Term Questions';
+} else if (id === 'discrete-maths-endterm') {
+text = 'Prepverse > Discrete Maths > End Term Questions';
+} else if (id === 'discrete-maths-notes') {
+text = 'Prepverse > Discrete Maths > Notes';
+} else if (id === 'icp-midterm') {
+text = 'Prepverse > ICP > Mid Term Questions';
+} else if (id === 'icp-endterm') {
+text = 'Prepverse > ICP > End Term Questions';
+} else if (id === 'icp-notes') {
+text = 'Prepverse > ICP > Notes';
+} else if (id === 'webdev-midterm') {
+text = 'Prepverse > Web Development > Mid Term Questions';
+} else if (id === 'webdev-endterm') {
+text = 'Prepverse > Web Development > End Term Questions';
+} else if (id === 'webdev-notes') {
+text = 'Prepverse > Web Development > Notes';
+}
+document.getElementById('breadcrumb').textContent = text;
+}
+
+function updateActiveLink(id) {
+document.querySelectorAll('.sidebar a').forEach(link => {
+link.classList.remove('active');
+});
+
+const activeLink = document.querySelector(`a[onclick="showContent('${id}')"]`);
+if (activeLink) {
+activeLink.classList.add('active');
+}
+}
+
+function toggleAnswer(btn) {
+const answer = btn.nextElementSibling;
+if (answer.style.display === 'block') {
+answer.style.display = 'none';
+btn.textContent = 'Show Answer';
+} else {
+answer.style.display = 'block';
+btn.textContent = 'Hide Answer';
+}
+}
+
+function searchQuestions() {
+const searchTerm = document.getElementById('search').value.toLowerCase();
+const activeSection = document.querySelector('.content-section.active');
+if (!activeSection) return;
+
+const questions = activeSection.querySelectorAll('.question');
+questions.forEach(question => {
+const text = question.textContent.toLowerCase();
+if (text.includes(searchTerm)) {
+question.classList.remove('hidden');
+} else {
+question.classList.add('hidden');
+}
+});
+}
+
+document.addEventListener('click', function(event) {
+if (!event.target.closest('.subject-group')) {
+document.querySelectorAll('.subject-group').forEach(group => {
+group.classList.remove('open');
+group.querySelector('.subject-options').classList.remove('active');
+});
+}
+});
+</script>
 
 </body>
 </html>
