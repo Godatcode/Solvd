@@ -1,0 +1,15 @@
+{
+  "name": "prepverse-scripts",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "extract": "node extract_questions.mjs",
+    "seed":    "node seed.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "dotenv": "^16.4.5"
+  },
+  "description": "One-off scripts for PrepVerse (extraction from legacy HTML, DB seeding). Not part of the Next.js app in ../web."
+}
