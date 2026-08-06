@@ -4,7 +4,7 @@ This file is auto-loaded by Claude Code. Read it every session.
 
 ## Project
 
-PrepVerse is a collaborative previous-year-question-paper (PYQ) platform for Indian college students. Full product plan lives in `PLAN.md`. Current phase and the exact next task live in `PHASE_0_PROMPT.md` (or whichever `PHASE_N_PROMPT.md` is current). **Do not build features from later phases.**
+Solvd is a collaborative previous-year-question-paper (PYQ) platform for Indian college students. Full product plan lives in `PLAN.md`. Current phase and the exact next task live in `PHASE_0_PROMPT.md` (or whichever `PHASE_N_PROMPT.md` is current). **Do not build features from later phases.**
 
 ## Locked stack — do not swap without asking
 
@@ -28,7 +28,7 @@ PrepVerse is a collaborative previous-year-question-paper (PYQ) platform for Ind
 ## Folder layout
 
 ```
-prepverse/                     <- repo root
+PrepVerse/                 <- repo root (folder + GitHub repo name)
 ├── PLAN.md                    <- product/strategy doc, read for context
 ├── CLAUDE.md                  <- this file
 ├── PHASE_0_PROMPT.md          <- the current task
@@ -45,7 +45,7 @@ prepverse/                     <- repo root
         ├── components/        <- shared components
         └── lib/
             ├── config.ts      <- college/branch/site constants
-            ├── routes.ts      <- the ONLY place that builds a PrepVerse URL
+            ├── routes.ts      <- the ONLY place that builds a Solvd URL
             ├── db/            <- one file per table, typed query functions
             └── supabase/      <- server.ts + client.ts
 ```

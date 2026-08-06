@@ -8,7 +8,7 @@ Read `CLAUDE.md` and `PLAN.md` in full before you start. Confirm you've read the
 
 We are on **Phase 0**. The scope is fixed:
 
-**Goal:** Ship a read-only, DB-backed version of PrepVerse with real per-subject URLs. No auth, no uploads, no voting yet.
+**Goal:** Ship a read-only, DB-backed version of Solvd with real per-subject URLs. No auth, no uploads, no voting yet.
 
 **Deliverables for this session, in order:**
 
@@ -40,7 +40,7 @@ We are on **Phase 0**. The scope is fixed:
    Use `generateStaticParams` on the two dynamic routes. Set `export const revalidate = 300` (5 min ISR).
 
 6. **Metadata**
-   - Every page exports `generateMetadata` with a real `<title>` and `<meta description>`. Title format: `[Subject] — [Term] [Year] PYQs | PrepVerse`.
+   - Every page exports `generateMetadata` with a real `<title>` and `<meta description>`. Title format: `[Subject] — [Term] [Year] PYQs | Solvd`.
 
 7. **README update**
    - Append a "Running the app" section to `README.md` with the exact commands.

@@ -7,7 +7,7 @@ export default function NotFound() {
         Page not found
       </h1>
       <p className="mt-3 text-slate-600">
-        That subject or paper is not in PrepVerse yet.
+        That subject or paper is not in Solvd yet.
       </p>
       <Link
         href="/"

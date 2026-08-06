@@ -6,7 +6,7 @@
  * all it takes to re-scope the whole site.
  */
 
-export const SITE_NAME = 'PrepVerse';
+export const SITE_NAME = 'Solvd';
 
 /** Slug used in URLs: /sst/cse/sem-1/discrete-maths */
 export const DEFAULT_COLLEGE = 'sst';

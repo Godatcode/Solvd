@@ -1,4 +1,4 @@
-# PrepVerse
+# Solvd
 
 A collaborative previous-year-question-paper platform, built by students for students.
 
@@ -9,7 +9,7 @@ Full product plan lives in [`PLAN.md`](./PLAN.md). Rules for Claude Code live in
 ## What's in this repo (right now)
 
 ```
-prepverse/
+PrepVerse/
 ├── PLAN.md                    <- full HLD + growth plan
 ├── CLAUDE.md                  <- house rules Claude Code auto-reads
 ├── PHASE_0_PROMPT.md          <- paste this into Claude Code
@@ -226,14 +226,14 @@ Change both, then re-run `extract` and `seed`.
 4. Add these env vars in the Vercel dashboard:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `NEXT_PUBLIC_SITE_URL` — your real URL, e.g. `https://prepverse.in`. Without
+   - `NEXT_PUBLIC_SITE_URL` — your real URL, e.g. `https://solvd.in`. Without
      it, canonical tags and JSON-LD point at `localhost`, which wrecks the SEO
      plan in `PLAN.md` §2.4.
 
    Do **not** add `SUPABASE_SERVICE_ROLE_KEY` — the app never uses it, only the
    local seed script does.
 5. Deploy. You get a `*.vercel.app` URL immediately.
-6. Buy a domain when you're ready (Namecheap: `prepverse.in` ≈ ₹700/yr) and point it at Vercel.
+6. Buy a domain when you're ready (Namecheap: `solvd.in` ≈ ₹700/yr) and point it at Vercel.
 
 ---
 

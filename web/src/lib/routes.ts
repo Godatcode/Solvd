@@ -70,7 +70,7 @@ export function semesterOf(subject: SubjectRow): number {
 }
 
 // ---------------------------------------------------------------------------
-// Path builders — the only place that concatenates a PrepVerse URL
+// Path builders — the only place that concatenates a Solvd URL
 // ---------------------------------------------------------------------------
 
 export function subjectPath(subject: SubjectRow): string {

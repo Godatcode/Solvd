@@ -1,4 +1,4 @@
--- PrepVerse — initial schema
+-- Solvd — initial schema
 -- Run this once in your Supabase project's SQL editor.
 -- Everything is idempotent; safe to re-run.
 

@@ -1,4 +1,4 @@
-# PrepVerse — High-Level Design & Growth Plan
+# Solvd — High-Level Design & Growth Plan
 
 *A collaborative PYQ + notes platform, built by students for students.*
 
@@ -23,7 +23,7 @@ That's fine as a v0. But everything below assumes you're rebuilding, because bol
 
 ## 1. Product vision (in one paragraph)
 
-PrepVerse is a **college-scoped, community-owned question bank**. Students upload past-year papers (PDFs), tag them by subject/term/year, and the community adds solutions, notes, and mnemonics. Reputation points and a weekly leaderboard turn "helping juniors" into a low-key sport. The site is fast, mobile-first, and works even on 3G, because it will be opened 20 minutes before an exam.
+Solvd is a **college-scoped, community-owned question bank**. Students upload past-year papers (PDFs), tag them by subject/term/year, and the community adds solutions, notes, and mnemonics. Reputation points and a weekly leaderboard turn "helping juniors" into a low-key sport. The site is fast, mobile-first, and works even on 3G, because it will be opened 20 minutes before an exam.
 
 **Three personas:**
 - **Seekers** (90% of traffic) — juniors browsing right before exams. Never sign up. You optimize *purely* for them: fast page, no login walls, one-tap PDF preview.
@@ -82,7 +82,7 @@ See `supabase/migrations/0001_init.sql` for the actual SQL. Tables:
 
 ### 2.4 URL structure (for SEO — this matters a lot)
 
-Bad (your current site): `prepverse.com/#discrete-maths-midterm`
+Bad (your current site): `solvd.com/#discrete-maths-midterm`
 Good:
 ```
 /[college]/cse/sem-1/discrete-maths
@@ -190,7 +190,7 @@ The single highest-leverage window is **10 days before each term exam.** Concent
 - **Weekly leaderboard email** to registered users. FOMO loop.
 - **"You just contributed! Share your rep badge on your story"** — one-tap Instagram Story with a pre-designed template.
 - **Referral rep bonus** — invite a friend who uploads a paper → both get +20 rep.
-- **Public profile page** — `prepverse.com/@yourname` — a portfolio students can share ("500 rep, top 5 in Discrete Maths"). CS students love this stuff.
+- **Public profile page** — `solvd.com/@yourname` — a portfolio students can share ("500 rep, top 5 in Discrete Maths"). CS students love this stuff.
 
 ### 4.5 Content moat
 

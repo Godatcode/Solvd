@@ -6,7 +6,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  // Pages set just their own half of the title; this appends " | PrepVerse".
+  // Pages set just their own half of the title; this appends " | Solvd".
   title: {
     default: `${SITE_NAME} — Previous Year Question Papers for ${COLLEGE_NAME}`,
     template: `%s | ${SITE_NAME}`,

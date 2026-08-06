@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: { params: PaperParams }): Pro
 
   return {
     // Title format is fixed by PHASE_0_PROMPT.md item 6; the root layout's
-    // template appends " | PrepVerse".
+    // template appends " | Solvd".
     title: `${subject.name} — ${label} PYQs`,
     description:
       `All ${questions.length} questions from the ${subject.name} ${label} paper at ` +
